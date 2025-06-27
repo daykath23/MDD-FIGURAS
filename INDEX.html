@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figuras Literarias - MDD</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f8f8f8; margin: 0; padding: 20px; }
+    .screen { display: none; padding: 20px; border-radius: 12px; background-color: white; box-shadow: 0 0 10px #ccc; }
+    .screen.active { display: block; }
+    .btn { padding: 10px 20px; margin: 10px 0; background-color: #007BFF; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    .btn-reset { background-color: #ff5757; }
+    .options label { display: block; margin: 5px 0; }
+    .image-set img { width: 100px; margin: 10px; cursor: pointer; border: 2px solid transparent; }
+    .image-set img.selected { border-color: #007BFF; }
+  </style>
+</head>
+<body>
+
+<div id="screen2" class="screen active">
+  <h2>Uso de Figuras Literarias en la Escritura Creativa</h2>
+  <p>Material Didáctico Digital - Educación General Básica</p>
+  <button class="btn" onclick="nextScreen(3)">Comenzar</button>
+</div>
+
+<div id="screen3" class="screen">
+  <h2>Objetivo general</h2>
+  <p>Reconocer, diferenciar y aplicar figuras literarias como metáfora, símil, hipérbole y personificación en textos creativos.</p>
+  <button class="btn" onclick="nextScreen(4)">Siguiente</button>
+</div>
+
+<div id="screen4" class="screen">
+  <h2>Actividad 1: Completa la oración</h2>
+  <p>"Tus ojos son _____."</p>
+  <div class="options">
+    <label><input type="radio" name="q1" value="Metáfora"> dos soles</label>
+    <label><input type="radio" name="q1" value="Símil"> como luceros</label>
+    <label><input type="radio" name="q1" value="Hipérbole"> brillan como fuego</label>
+  </div>
+  <button class="btn btn-reset" onclick="resetQuiz(1)">Resetear</button>
+  <button class="btn" onclick="nextScreen(5)">Siguiente</button>
+</div>
+
+<div id="screen5" class="screen">
+  <h2>Actividad 2: Relaciona imagen y figura</h2>
+  <p>¿Qué figura representa esta imagen?</p>
+  <div class="image-set">
+    <img src="sol.png" alt="Sol con cara" onclick="selectImage(this, 'Personificación')">
+    <img src="gigante.png" alt="Gigante" onclick="selectImage(this, 'Hipérbole')">
+    <img src="corazon.png" alt="Corazón con alas" onclick="selectImage(this, 'Metáfora')">
+  </div>
+  <button class="btn btn-reset" onclick="resetImages()">Resetear</button>
+  <button class="btn" onclick="nextScreen(6)">Siguiente</button>
+</div>
+
+<div id="screen6" class="screen">
+  <h2>Actividad 3: Sopa de letras</h2>
+  <p>Encuentra las figuras: PERSONIFICACIÓN, METÁFORA, SÍMIL, HIPÉRBOLE</p>
+  <p><em>(Este módulo puede integrarse con una sopa de letras externa o un iframe embebido)</em></p>
+  <button class="btn" onclick="nextScreen(7)">Siguiente</button>
+</div>
+
+<div id="screen7" class="screen">
+  <h2>Evaluación Formativa</h2>
+  <p>Selecciona la figura correcta en base a la imagen:</p>
+  <img src="nube.png" alt="Nube" width="100">
+  <div class="options">
+    <label><input type="radio" name="q2" value="Metáfora"> Metáfora</label>
+    <label><input type="radio" name="q2" value="Hipérbole"> Hipérbole</label>
+    <label><input type="radio" name="q2" value="Personificación"> Personificación</label>
+  </div>
+  <button class="btn" onclick="nextScreen(8)">Siguiente</button>
+</div>
+
+<div id="screen8" class="screen">
+  <h2>Resumen automático</h2>
+  <p><strong>¡Buen trabajo!</strong> Has reforzado muy bien las figuras visuales.</p>
+  <button class="btn" onclick="nextScreen(9)">Siguiente</button>
+</div>
+
+<div id="screen9" class="screen">
+  <h2>Evaluación final</h2>
+  <p>Tarea: Escribe un cuento o poema con al menos 3 figuras literarias.</p>
+  <textarea rows="5" cols="50" placeholder="Escribe aquí tu texto..."></textarea>
+  <button class="btn" onclick="nextScreen(10)">Enviar</button>
+</div>
+
+<div id="screen10" class="screen">
+  <h2>¡Felicidades!</h2>
+  <p>Has completado tu viaje creativo con las figuras literarias.</p>
+  <button class="btn" onclick="nextScreen(2)">Volver al inicio</button>
+</div>
+
+<script>
+  function nextScreen(n) {
+    document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+    document.getElementById('screen' + n).classList.add('active');
+  }
+
+  function resetQuiz(n) {
+    document.querySelectorAll('input[name="q' + n + '"]').forEach(el => el.checked = false);
+  }
+
+  function selectImage(el, figure) {
+    document.querySelectorAll('.image-set img').forEach(img => img.classList.remove('selected'));
+    el.classList.add('selected');
+    console.log("Figura seleccionada:", figure);
+  }
+
+  function resetImages() {
+    document.querySelectorAll('.image-set img').forEach(img => img.classList.remove('selected'));
+  }
+</script>
+
+</body>
+</html>
